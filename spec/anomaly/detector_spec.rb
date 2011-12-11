@@ -1,8 +1,8 @@
 require "spec_helper"
 
-describe AnomalyDetector do
+describe Anomaly::Detector do
   let(:data) { [[-1,-2],[0,0],[1,2]] }
-  let(:ad) { AnomalyDetector.new(data) }
+  let(:ad) { Anomaly::Detector.new(data) }
 
   # mean = [0, 0], std = [1, 2]
   it "computes the right probability" do
@@ -34,7 +34,7 @@ describe AnomalyDetector do
     let(:sample) { [rand, rand] }
 
     it "returns the same probability as an NMatrix" do
-      ad.probability(sample).should == AnomalyDetector.new(Matrix.rows(data)).probability(sample)
+      ad.probability(sample).should == Anomaly::Detector.new(Matrix.rows(data)).probability(sample)
     end
   end
 end

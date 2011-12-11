@@ -1,7 +1,7 @@
 require "rubygems"
 require "bundler/setup"
 
-require "anomaly_detector"
+require "anomaly"
 require "matrix"
 
 RSpec.configure do |config|

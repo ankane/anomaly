@@ -1,5 +1,4 @@
-
-# AnomalyDetector
+# Anomaly
 
 Anomaly detection using a normal distribution.
 
@@ -8,7 +7,7 @@ Anomaly detection using a normal distribution.
 Add this line to your application's Gemfile:
 
 ```ruby
-gem "anomaly_detector"
+gem "anomaly"
 ```
 
 And then execute:
@@ -27,7 +26,7 @@ train_data = [
   [0.2, 101, 2.1],
   [0.5, 102, 1.6]
 ]
-ad = AnomalyDetector.new(train_data)
+ad = Anomaly::Detector.new(train_data)
 ```
 
 That's it! Let's test for anomalies.
