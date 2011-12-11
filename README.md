@@ -16,6 +16,14 @@ And then execute:
 bundle install
 ```
 
+For max performance (about 3x faster), also install the NArray gem:
+
+```
+gem "narray"
+```
+
+Anomaly will automatically detect it and use it.
+
 ## How to Use
 
 Train the detector with **only non-anomalies**. Each row is a sample.
@@ -60,12 +68,12 @@ You can easily persist the detector to a file or database - it's very tiny.
 serialized_ad = Marshal.dump(ad)
 
 # Save to a file
-File.open("anomaly_detector.txt", "w") {|f| f.write(serialized_ad) }
+File.open("anomaly_detector.dump", "w") {|f| f.write(serialized_ad) }
 
 # ...
 
 # Read it later
-ad2 = Marshal.load(File.open("anomaly_detector.txt", "r").read)
+ad2 = Marshal.load(File.open("anomaly_detector.dump", "r").read)
 ```
 
 ## Contributing
