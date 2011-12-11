@@ -12,7 +12,7 @@ module Anomaly
         @mean = d.mean(1).to_a
         @std = d.stddev(1).to_a
       else
-        d = data.is_a?(Matrix) ? data : Matrix.rows(data)
+        d = data.is_a?(Matrix) ? data : Matrix.rows(data, false)
         cols = d.column_size.times.map{|i| d.column(i)}
         @mean = cols.map{|c| mean(c)}
         @std = cols.each_with_index.map{|c,i| std(c, @mean[i])}
