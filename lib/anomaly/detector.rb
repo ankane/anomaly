@@ -1,3 +1,5 @@
+require "matrix" unless defined?(NMatrix)
+
 module Anomaly
   class Detector
 
