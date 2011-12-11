@@ -54,11 +54,18 @@ Here's sample to code to help you find the best ε for your application.
 # TODO
 ```
 
-You can easily persist the detector in a file or database.
+You can easily persist the detector to a file or database - it's very tiny.
 
 ```ruby
-# TODO Finish example
-Marshal.dump(ad)
+serialized_ad = Marshal.dump(ad)
+
+# Save to a file
+File.open("anomaly_detector.txt", "w") {|f| f.write(serialized_ad) }
+
+# ...
+
+# Read it later
+ad2 = Marshal.load(File.open("anomaly_detector.txt", "r").read)
 ```
 
 ## Contributing
