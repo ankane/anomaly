@@ -25,15 +25,7 @@ describe Anomaly::Detector do
     end
   end
 
-  context "when one training example" do
-    let(:data) { [[0]] }
-
-    it "returns infinity" do
-      ad.probability([0]).should == 1
-    end
-  end
-
-  context "when data is a matrix" do
+  context "when data is an array" do
     let(:data) { [[-1,-2],[0,0],[1,2]] }
     let(:sample) { [rand, rand] }
 
