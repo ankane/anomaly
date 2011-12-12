@@ -1,27 +1,38 @@
-require "matrix" unless defined?(NMatrix)
-
 module Anomaly
   class Detector
 
-    def initialize(data)
-      # Use NMatrix if possible
-      if defined?(NMatrix) and (!defined?(Matrix) or !data.is_a?(Matrix))
-        d = data.is_a?(NMatrix) ? data : NMatrix.to_na(data)
+    def initialize(data = nil)
+      @trained = false
+      train(data) if data
+    end
 
+    def train(data)
+      if defined?(NMatrix)
+        d = NMatrix.to_na(data)
         # Convert these to an array for Marshal.dump
         @mean = d.mean(1).to_a
         @std = d.stddev(1).to_a
       else
-        d = data.is_a?(Matrix) ? data : Matrix.rows(data, false)
-        cols = d.column_size.times.map{|i| d.column(i)}
+        # Default to Array, since built-in Matrix does not give us a big performance advantage.
+        d = data.to_a
+        cols = d.first.size.times.map{|i| d.map{|r| r[i]}}
         @mean = cols.map{|c| mean(c)}
         @std = cols.each_with_index.map{|c,i| std(c, @mean[i])}
       end
 
-      raise "Standard deviation cannot be zero" if @std.find_index{|i| i == 0 or i.nan?}
+      @std.map!{|std| (std == 0 or std.nan?) ? Float::MIN : std}
+
+      # raise "Standard deviation cannot be zero" if @std.find_index{|i| i == 0 or i.nan?}
+
+      @trained = true
+    end
+
+    def trained?
+      @trained
     end
 
     def probability(x)
+      raise "Train me first" unless trained?
       raise ArgumentError, "x must have #{@mean.size} elements" if x.size != @mean.size
       x.each_with_index.map{|a,i| normal_pdf(a, @mean[i], @std[i]) }.reduce(1, :*)
     end
@@ -34,8 +45,10 @@ module Anomaly
 
     SQRT2PI = Math.sqrt(2*Math::PI)
 
+    # Return 1 (exclude feature) if std ~ 0
     def normal_pdf(x, mean = 0, std = 1)
-      1/(SQRT2PI*std)*Math.exp(-((x - mean)**2/(2.0*(std**2))))
+      p = 1.0/(SQRT2PI*std)*Math.exp(-((x - mean)**2/(2.0*(std**2))))
+      p.nan? ? 1 : p
     end
 
     # Not used for NArray

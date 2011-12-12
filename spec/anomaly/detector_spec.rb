@@ -14,18 +14,22 @@ describe Anomaly::Detector do
   end
 
   context "when standard deviation is 0" do
-    let(:data) { [[1],[1]] }
+    let(:data) { [[0],[0]] }
 
-    it "raises error" do
-      expect{ ad }.to raise_error RuntimeError, "Standard deviation cannot be zero"
+    it "returns infinity for mean" do
+      ad.probability([0]).should == 1
+    end
+
+    it "returns 0 for not mean" do
+      ad.probability([1]).should == 0
     end
   end
 
   context "when one training example" do
-    let(:data) { [[1]] }
+    let(:data) { [[0]] }
 
-    it "raises error" do
-      expect{ ad }.to raise_error RuntimeError, "Standard deviation cannot be zero"
+    it "returns infinity" do
+      ad.probability([0]).should == 1
     end
   end
 
@@ -34,7 +38,9 @@ describe Anomaly::Detector do
     let(:sample) { [rand, rand] }
 
     it "returns the same probability as an NMatrix" do
-      ad.probability(sample).should == Anomaly::Detector.new(Matrix.rows(data)).probability(sample)
+      prob = ad.probability(sample)
+      Object.send(:remove_const, :NMatrix)
+      prob.should == Anomaly::Detector.new(data).probability(sample)
     end
   end
 end
