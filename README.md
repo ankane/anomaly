@@ -1,6 +1,6 @@
 # Anomaly
 
-Anomaly detection using a normal distribution.
+Easy-to-use anomaly detection
 
 ## Installation
 
