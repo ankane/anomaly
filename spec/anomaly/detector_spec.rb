@@ -35,4 +35,19 @@ describe Anomaly::Detector do
       prob.should == Anomaly::Detector.new(data).probability(sample)
     end
   end
+
+  context "when lots of samples" do
+    let(:data) { m.times.map{[0]} }
+    let(:m) { rand(100) + 1 }
+
+    it { ad.samples.should == m }
+    it { ad.trained?.should be_true }
+  end
+
+  context "when no samples" do
+    let(:data) { [] }
+
+    it { ad.samples.should == 0 }
+    it { ad.trained?.should be_false }
+  end
 end

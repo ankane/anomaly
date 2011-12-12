@@ -2,30 +2,35 @@ module Anomaly
   class Detector
 
     def initialize(data = nil)
-      @trained = false
+      @m = 0
       train(data) if data
     end
 
     def train(data)
       if defined?(NMatrix)
         d = NMatrix.to_na(data)
+        @n, @m = d.sizes
         # Convert these to an array for Marshal.dump
         @mean = d.mean(1).to_a
         @std = d.stddev(1).to_a
       else
         # Default to Array, since built-in Matrix does not give us a big performance advantage.
         d = data.to_a
-        cols = d.first.size.times.map{|i| d.map{|r| r[i]}}
+        @m = d.size
+        @n = d.first ? d.first.size : 0
+        cols = @n.times.map{|i| d.map{|r| r[i]}}
         @mean = cols.map{|c| mean(c)}
         @std = cols.each_with_index.map{|c,i| std(c, @mean[i])}
       end
       @std.map!{|std| (std == 0 or std.nan?) ? Float::MIN : std}
-
-      @trained = true
     end
 
     def trained?
-      @trained
+      @m > 0
+    end
+
+    def samples
+      @m
     end
 
     def probability(x)
