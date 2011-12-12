@@ -65,15 +65,9 @@ ad.anomaly?(test_sample, 1e-5)
 # => true
 ```
 
-Here's sample to code to help you find the best ε for your application.
+The wiki has [sample code](https://github.com/ankane/anomaly/wiki/Home) to help you find the best ε for your application.
 
-```ruby
-# TODO
-# 1. Partition data
-# 2. Train detector
-# 3. Calculate f1_score for test data
-# 4. Repeat for multiple values of epsilon
-```
+### Persistence
 
 You can easily persist the detector to a file or database - it's very tiny.
 
