@@ -33,10 +33,15 @@ module Anomaly
       @m
     end
 
+    # Limit the probability of features to [0,1]
+    # to keep probabilities at same scale.
     def probability(x)
       raise "Train me first" unless trained?
-      raise ArgumentError, "x must have #{@mean.size} elements" if x.size != @mean.size
-      x.each_with_index.map{|a,i| normal_pdf(a, @mean[i], @std[i]) }.reduce(1, :*)
+      raise ArgumentError, "x must have #{@n} elements" if x.size != @n
+      @n.times.map do |i|
+        p = normal_pdf(x[i], @mean[i], @std[i])
+        (p.nan? or p > 1) ? 1 : p
+      end.reduce(1, :*)
     end
 
     def anomaly?(x, epsilon)
@@ -47,10 +52,8 @@ module Anomaly
 
     SQRT2PI = Math.sqrt(2*Math::PI)
 
-    # Return 1 (exclude feature) if std ~ 0
     def normal_pdf(x, mean = 0, std = 1)
-      p = 1.0/(SQRT2PI*std)*Math.exp(-((x - mean)**2/(2.0*(std**2))))
-      p.nan? ? 1 : p
+      1/(SQRT2PI*std)*Math.exp(-((x - mean)**2/(2.0*(std**2))))
     end
 
     # Not used for NArray

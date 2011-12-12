@@ -50,4 +50,10 @@ describe Anomaly::Detector do
     it { ad.samples.should == 0 }
     it { ad.trained?.should be_false }
   end
+
+  context "when pdf is greater than 1" do
+    let(:data) { 100.times.map{[0]}.push([1]) }
+
+    it { ad.probability([0]).should == 1 }
+  end
 end
