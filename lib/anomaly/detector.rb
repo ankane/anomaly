@@ -19,10 +19,7 @@ module Anomaly
         @mean = cols.map{|c| mean(c)}
         @std = cols.each_with_index.map{|c,i| std(c, @mean[i])}
       end
-
       @std.map!{|std| (std == 0 or std.nan?) ? Float::MIN : std}
-
-      # raise "Standard deviation cannot be zero" if @std.find_index{|i| i == 0 or i.nan?}
 
       @trained = true
     end
