@@ -4,8 +4,8 @@ require File.expand_path('../lib/anomaly/version', __FILE__)
 Gem::Specification.new do |gem|
   gem.authors       = ["Andrew Kane"]
   gem.email         = ["andrew@getformidable.com"]
-  gem.description   = %q{Anomaly detection using a normal distribution.}
-  gem.summary       = %q{Anomaly detection using a normal distribution.}
+  gem.description   = %q{Easy-to-use anomaly detection}
+  gem.summary       = %q{Easy-to-use anomaly detection}
   gem.homepage      = "https://github.com/ankane/anomaly"
 
   gem.executables   = `git ls-files -- bin/*`.split("\n").map{ |f| File.basename(f) }
