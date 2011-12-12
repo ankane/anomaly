@@ -30,7 +30,7 @@ Say we have weather data for sunny days and we're trying to detect days that are
 
 ```ruby
 # Each row is a different day.
-# [temperature (F), humidity (%), pressure (in)]
+# [temperature (°F), humidity (%), pressure (in)]
 weather_data = [
   [85, 68, 10.4],
   [88, 62, 12.1],
@@ -48,7 +48,7 @@ ad = Anomaly::Detector.new(weather_data)
 That's it! Let's test for anomalies.
 
 ```ruby
-# 40° F, 80% humidity, 10.2 in. pressure
+# 79°F, 66% humidity, 12.3 in. pressure
 test_sample = [79, 66, 12.3]
 ad.probability(test_sample)
 # => 7.537174740907633e-08
