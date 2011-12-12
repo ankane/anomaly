@@ -16,7 +16,7 @@ And then execute:
 bundle install
 ```
 
-For max performance (about 3x faster), also install the NArray gem:
+For max performance (~ 2x faster), also install the NArray gem:
 
 ```ruby
 gem "narray"
