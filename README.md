@@ -54,13 +54,13 @@ ad.anomaly?([79, 66, 12.3])
 
 Anomaly automatically finds the best value for ε, which you can access with:
 
-```
+```ruby
 ad.eps
 ```
 
 If you already know you want ε = 0.01, initialize the detector with:
 
-```
+```ruby
 ad = Anomaly::Detector.new(weather_examples, {:eps => 0.01})
 ```
 
