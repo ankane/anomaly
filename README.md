@@ -16,7 +16,7 @@ And then execute:
 bundle install
 ```
 
-For max performance (~ 2x faster), also install the NArray gem:
+For max performance (trains ~3x faster for large datasets), also install the NArray gem:
 
 ```ruby
 gem "narray"
@@ -30,42 +30,39 @@ Say we have weather data for sunny days and we're trying to detect days that are
 
 ```ruby
 # Each row is a different day.
-# [temperature (°F), humidity (%), pressure (in)]
-weather_data = [
-  [85, 68, 10.4],
-  [88, 62, 12.1],
-  [86, 64, 13.6],
+# [temperature (°F), humidity (%), pressure (in), anomaly?(n=0, y=1)]
+weather_examples = [
+  [85, 68, 10.4, 0],
+  [88, 62, 12.1, 0],
+  [86, 64, 13.6, 0],
+  [88, 40, 11.1, 1],
   ...
 ]
 ```
 
-Train the detector with **only non-anomalies** (sunny days in our case).
+The last column **must** be 0 for non-anomalies, 1 for anomalies. Non-anomalies are used to train the detector, and both non-anomalies and anomalies are used to find the best value of ε.
+
+To train the detector and test for anomalies, run:
 
 ```ruby
-ad = Anomaly::Detector.new(weather_data)
-```
+ad = Anomaly::Detector.new(weather_examples)
 
-That's it! Let's test for anomalies.
-
-```ruby
 # 79°F, 66% humidity, 12.3 in. pressure
-test_sample = [79, 66, 12.3]
-ad.probability(test_sample)
-# => 7.537174740907633e-08
-```
-
-**Super-important:** You must select a threshold for anomalies (which we denote with ε - "epsilon")
-
-Probabilities less than ε are considered anomalies. If ε is higher, more things are considered anomalies.
-
-``` ruby
-ad.anomaly?(test_sample, 1e-10)
-# => false
-ad.anomaly?(test_sample, 1e-5)
+ad.anomaly?([79, 66, 12.3])
 # => true
 ```
 
-The wiki has [sample code](https://github.com/ankane/anomaly/wiki/Home) to help you find the best ε for your application.
+Anomaly automatically finds the best value for ε, which you can access with:
+
+```
+ad.eps
+```
+
+If you already know you want ε = 0.01, initialize the detector with:
+
+```
+ad = Anomaly::Detector.new(weather_examples, {:eps => 0.01})
+```
 
 ### Persistence
 
