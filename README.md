@@ -30,7 +30,7 @@ Say we have weather data for sunny days and we're trying to detect days that are
 
 ```ruby
 # Each row is a different day.
-# [temperature (°F), humidity (%), pressure (in), anomaly?(n=0, y=1)]
+# [temperature(°F), humidity(%), pressure(in), anomaly?(n=0, y=1)]
 weather_examples = [
   [85, 68, 10.4, 0],
   [88, 62, 12.1, 0],
@@ -40,7 +40,7 @@ weather_examples = [
 ]
 ```
 
-The last column **must** be 0 for non-anomalies, 1 for anomalies. Non-anomalies are used to train the detector, and both non-anomalies and anomalies are used to find the best value of ε.
+The last column **must** be 0 for non-anomalies, 1 for anomalies. Non-anomalies are used to train the detector, and both anomalies and non-anomalies are used to find the best value of ε.
 
 To train the detector and test for anomalies, run:
 
