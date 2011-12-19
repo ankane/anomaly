@@ -60,7 +60,7 @@ ad.eps
 If you already know you want ε = 0.01, initialize the detector with:
 
 ```ruby
-ad = Anomaly::Detector.new(weather_examples, {:eps => 0.01})
+ad = Anomaly::Detector.new(weather_data, {:eps => 0.01})
 ```
 
 ### Persistence
