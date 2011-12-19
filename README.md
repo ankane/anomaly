@@ -26,7 +26,7 @@ Anomaly will automatically detect it and use it.
 
 ## How to Use
 
-Say we have weather data and we want to predict if it's sunny. In this example, sunny days are non-anomalies, and any other type of weather (rain, snow, etc.) are anomalies. The data looks like:
+Say we have weather data and we want to predict if it's sunny. In this example, sunny days are non-anomalies, and days with other types of weather (rain, snow, etc.) are anomalies. The data looks like:
 
 ```ruby
 # [temperature(°F), humidity(%), pressure(in), sunny?(y=0, n=1)]
