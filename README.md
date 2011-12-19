@@ -26,16 +26,15 @@ Anomaly will automatically detect it and use it.
 
 ## How to Use
 
-Say we have weather data for sunny days and we're trying to detect days that aren't sunny. The data looks like:
+Say we have weather data and we want to predict if it's sunny. In this example, sunny days are non-anomalies, and any other type of weather (rain, snow, etc.) are anomalies. The data looks like:
 
 ```ruby
-# Each row is a different day.
-# [temperature(°F), humidity(%), pressure(in), anomaly?(n=0, y=1)]
-weather_examples = [
+# [temperature(°F), humidity(%), pressure(in), sunny?(y=0, n=1)]
+weather_data = [
   [85, 68, 10.4, 0],
   [88, 62, 12.1, 0],
   [86, 64, 13.6, 0],
-  [88, 40, 11.1, 1],
+  [88, 90, 11.1, 1],
   ...
 ]
 ```
@@ -45,10 +44,10 @@ The last column **must** be 0 for non-anomalies, 1 for anomalies. Non-anomalies 
 To train the detector and test for anomalies, run:
 
 ```ruby
-ad = Anomaly::Detector.new(weather_examples)
+ad = Anomaly::Detector.new(weather_data)
 
-# 79°F, 66% humidity, 12.3 in. pressure
-ad.anomaly?([79, 66, 12.3])
+# 85°F, 42% humidity, 12.3 in. pressure
+ad.anomaly?([85, 42, 12.3])
 # => true
 ```
 
