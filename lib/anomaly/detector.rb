@@ -1,5 +1,6 @@
 module Anomaly
   class Detector
+    attr_reader :mean, :std
     attr_accessor :eps
 
     def initialize(examples = nil, opts = {})
@@ -45,8 +46,8 @@ module Anomaly
       else
         # Default to Array, since built-in Matrix does not give us a big performance advantage.
         cols = @n.times.map{|i| training_examples.map{|r| r[i]}}
-        @mean = cols.map{|c| mean(c)}
-        @std = cols.each_with_index.map{|c,i| std(c, @mean[i])}
+        @mean = cols.map{|c| alt_mean(c)}
+        @std = cols.each_with_index.map{|c,i| alt_std(c, @mean[i])}
       end
       @std.map!{|std| (std == 0 or std.nan?) ? Float::MIN : std}
 
@@ -120,11 +121,11 @@ module Anomaly
 
     # Not used for NArray
 
-    def mean(x)
+    def alt_mean(x)
       x.inject(0.0){|a, i| a + i}/x.size
     end
 
-    def std(x, mean)
+    def alt_std(x, mean)
       Math.sqrt(x.inject(0.0){|a, i| a + (i - mean) ** 2}/(x.size - 1))
     end
 

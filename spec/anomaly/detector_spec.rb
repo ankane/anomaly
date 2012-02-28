@@ -9,6 +9,14 @@ describe Anomaly::Detector do
     ad.probability([0,0]).should == 0.079577471545947667
   end
 
+  it "computes the right mean" do
+    ad.mean.should == [0,0]
+  end
+
+  it "computes the right standard deviation" do
+    ad.std.should == [1,2]
+  end
+
   it "marshalizes" do
     expect{ Marshal.dump(ad) }.to_not raise_error
   end
