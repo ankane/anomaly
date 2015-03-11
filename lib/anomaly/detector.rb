@@ -34,7 +34,7 @@ module Anomaly
         test_examples.concat(anomalies)
       end
       # Remove last column.
-      training_examples = training_examples.map{|e| e[0..-2]}
+      training_examples = training_examples.map { |e| e[0..-2] }
       @m = training_examples.size
       @n = training_examples.first.size
 
@@ -45,17 +45,17 @@ module Anomaly
         @std = training_examples.stddev(1).to_a
       else
         # Default to Array, since built-in Matrix does not give us a big performance advantage.
-        cols = @n.times.map{|i| training_examples.map{|r| r[i]}}
-        @mean = cols.map{|c| alt_mean(c)}
-        @std = cols.each_with_index.map{|c,i| alt_std(c, @mean[i])}
+        cols = @n.times.map { |i| training_examples.map { |r| r[i] } }
+        @mean = cols.map { |c| alt_mean(c) }
+        @std = cols.each_with_index.map { |c, i| alt_std(c, @mean[i]) }
       end
-      @std.map!{|std| (std == 0 or std.nan?) ? Float::MIN : std}
+      @std.map! { |std| (std == 0 || std.nan?) ? Float::MIN : std }
 
       if @eps == 0
         # Find the best eps.
-        epss = (1..9).map{|i| [1,3,5,7,9].map{|j| (j*10**(-i)).to_f }}.flatten
-        f1_scores = epss.map{|eps| [eps, compute_f1_score(test_examples, eps)] }
-        @eps, best_f1 = f1_scores.max_by{|v| v[1]}
+        epss = (1..9).map { |i| [1, 3, 5, 7, 9].map { |j| (j * 10**(-i)).to_f } }.flatten
+        f1_scores = epss.map { |eps| [eps, compute_f1_score(test_examples, eps)] }
+        @eps, best_f1 = f1_scores.max_by { |v| v[1] }
       end
     end
 
@@ -70,7 +70,7 @@ module Anomaly
       raise ArgumentError, "First argument must have #{@n} elements" if x.size != @n
       @n.times.map do |i|
         p = normal_pdf(x[i], @mean[i], @std[i])
-        (p.nan? or p > 1) ? 1 : p
+        (p.nan? || p > 1) ? 1 : p
       end.reduce(1, :*)
     end
 
@@ -80,10 +80,10 @@ module Anomaly
 
     protected
 
-    SQRT2PI = Math.sqrt(2*Math::PI)
+    SQRT2PI = Math.sqrt(2 * Math::PI)
 
     def normal_pdf(x, mean = 0, std = 1)
-      1/(SQRT2PI*std)*Math.exp(-((x - mean)**2/(2.0*(std**2))))
+      1 / (SQRT2PI * std) * Math.exp(-((x - mean)**2 / (2.0 * (std**2))))
     end
 
     # Find best eps.
@@ -101,7 +101,7 @@ module Anomaly
       examples.each do |example|
         act = example.last != 0
         pred = self.anomaly?(example[0..-2], eps)
-        if act and pred
+        if act && pred
           tp += 1
         elsif pred # and !act
           fp += 1
@@ -122,12 +122,11 @@ module Anomaly
     # Not used for NArray
 
     def alt_mean(x)
-      x.inject(0.0){|a, i| a + i}/x.size
+      x.inject(0.0) { |a, i| a + i } / x.size
     end
 
     def alt_std(x, mean)
-      Math.sqrt(x.inject(0.0){|a, i| a + (i - mean) ** 2}/(x.size - 1))
+      Math.sqrt(x.inject(0.0) { |a, i| a + (i - mean)**2 } / (x.size - 1))
     end
-
   end
 end
