@@ -6,15 +6,15 @@ describe Anomaly::Detector do
 
   # mean = [0, 0], std = [1, 2]
   it "computes the right probability" do
-    ad.probability([0, 0]).should == 0.079577471545947667
+    expect(ad.probability([0, 0])).to eq(0.079577471545947667)
   end
 
   it "computes the right mean" do
-    ad.mean.should == [0, 0]
+    expect(ad.mean).to eq([0, 0])
   end
 
   it "computes the right standard deviation" do
-    ad.std.should == [1, 2]
+    expect(ad.std).to eq([1, 2])
   end
 
   it "marshalizes" do
@@ -25,11 +25,11 @@ describe Anomaly::Detector do
     let(:examples) { [[0, 0], [0, 0]] }
 
     it "returns infinity for mean" do
-      ad.probability([0]).should == 1
+      expect(ad.probability([0])).to eq(1)
     end
 
     it "returns 0 for not mean" do
-      ad.probability([1]).should == 0
+      expect(ad.probability([1])).to eq(0)
     end
   end
 
@@ -40,7 +40,7 @@ describe Anomaly::Detector do
     it "returns the same probability as an NMatrix" do
       prob = ad.probability(sample)
       Object.send(:remove_const, :NMatrix)
-      prob.should == Anomaly::Detector.new(examples).probability(sample)
+      expect(prob).to eq(Anomaly::Detector.new(examples).probability(sample))
     end
   end
 
@@ -48,19 +48,19 @@ describe Anomaly::Detector do
     let(:examples) { m.times.map { [0, 0] } }
     let(:m) { rand(100) + 1 }
 
-    it { ad.trained?.should be_truthy }
+    it { expect(ad.trained?).to be_truthy }
   end
 
   context "when no samples" do
     let(:examples) { nil }
 
-    it { ad.trained?.should be_falsey }
+    it { expect(ad.trained?).to be_falsey }
   end
 
   context "when pdf is greater than 1" do
     let(:examples) { 100.times.map { [0, 0] }.push([1, 0]) }
 
-    it { ad.probability([0]).should == 1 }
+    it { expect(ad.probability([0])).to eq(1) }
   end
 
   context "when only anomalies" do
@@ -74,6 +74,6 @@ describe Anomaly::Detector do
   context "when only one non-anomaly" do
     let(:examples) { [[0, 0]] }
 
-    it { ad.eps.should == 1e-1 }
+    it { expect(ad.eps).to eq(1e-1) }
   end
 end
