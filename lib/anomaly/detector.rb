@@ -55,7 +55,7 @@ module Anomaly
         # Find the best eps.
         epss = (1..9).map { |i| [1, 3, 5, 7, 9].map { |j| (j * 10**(-i)).to_f } }.flatten
         f1_scores = epss.map { |eps| [eps, compute_f1_score(test_examples, eps)] }
-        @eps, best_f1 = f1_scores.max_by { |v| v[1] }
+        @eps, _ = f1_scores.max_by { |v| v[1] }
       end
     end
 
