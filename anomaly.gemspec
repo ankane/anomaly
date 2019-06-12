@@ -1,21 +1,22 @@
-# -*- encoding: utf-8 -*-
-require File.expand_path("../lib/anomaly/version", __FILE__)
+require_relative "lib/anomaly/version"
 
-Gem::Specification.new do |gem|
-  gem.authors       = ["Andrew Kane"]
-  gem.email         = ["andrew@chartkick.com"]
-  gem.description   = "Easy-to-use anomaly detection"
-  gem.summary       = "Easy-to-use anomaly detection"
-  gem.homepage      = "https://github.com/ankane/anomaly"
+Gem::Specification.new do |spec|
+  spec.name          = "anomaly"
+  spec.version       = Anomaly::VERSION
+  spec.summary       = "Easy-to-use anomaly detection"
+  spec.homepage      = "https://github.com/ankane/anomaly"
+  spec.license       = "MIT"
 
-  gem.executables   = `git ls-files -- bin/*`.split("\n").map { |f| File.basename(f) }
-  gem.files         = `git ls-files`.split("\n")
-  gem.test_files    = `git ls-files -- {test,spec,features}/*`.split("\n")
-  gem.name          = "anomaly"
-  gem.require_paths = ["lib"]
-  gem.version       = Anomaly::VERSION
+  spec.author        = "Andrew Kane"
+  spec.email         = "andrew@chartkick.com"
 
-  gem.add_development_dependency "rake"
-  gem.add_development_dependency "rspec", ">= 2.0.0"
-  gem.add_development_dependency "narray"
+  spec.files         = Dir["*.{md,txt}", "{lib}/**/*"]
+  spec.require_path  = "lib"
+
+  spec.required_ruby_version = ">= 2.4"
+
+  spec.add_development_dependency "bundler"
+  spec.add_development_dependency "rake"
+  spec.add_development_dependency "rspec", ">= 2"
+  spec.add_development_dependency "narray"
 end
