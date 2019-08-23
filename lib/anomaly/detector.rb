@@ -39,7 +39,7 @@ module Anomaly
       @n = training_examples.first.size
 
       if defined?(Numo::DFloat)
-        training_examples = Numo::DFloat.cast(training_examples)
+        training_examples = Numo::SFloat.cast(training_examples)
         # Convert these to an Array for Marshal.dump
         @mean = training_examples.mean(0).to_a
         @std = training_examples.stddev(0).to_a
