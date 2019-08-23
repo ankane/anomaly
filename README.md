@@ -4,16 +4,10 @@ Easy-to-use anomaly detection
 
 ## Installation
 
-Add this line to your application's Gemfile:
+Add this line to your application’s Gemfile:
 
 ```ruby
 gem "anomaly"
-```
-
-And then execute:
-
-```sh
-bundle install
 ```
 
 For max performance (trains ~3x faster for large datasets), also install the NArray gem:
@@ -79,19 +73,20 @@ File.open("anomaly_detector.dump", "w") {|f| f.write(serialized_ad) }
 ad2 = Marshal.load(File.open("anomaly_detector.dump", "r").read)
 ```
 
-## TODO
+## Credits
 
-- Train in chunks (for very large datasets)
-- Multivariate normal distribution (possibly)
+A special thanks to [Andrew Ng](http://www.ml-class.org).
+
+## History
+
+View the [changelog](https://github.com/ankane/anomaly/blob/master/CHANGELOG.md)
 
 ## Contributing
 
-1. Fork it
-2. Create your feature branch (`git checkout -b my-new-feature`)
-3. Commit your changes (`git commit -am 'Added some feature'`)
-4. Push to the branch (`git push origin my-new-feature`)
-5. Create new Pull Request
+Everyone is encouraged to help improve this project. Here are a few ways you can help:
 
-## Thanks
+- [Report bugs](https://github.com/ankane/anomaly/issues)
+- Fix bugs and [submit pull requests](https://github.com/ankane/anomaly/pulls)
+- Write, clarify, or fix documentation
+- Suggest or add new features
 
-A special thanks to [Andrew Ng](http://www.ml-class.org).
