@@ -41,8 +41,8 @@ module Anomaly
       if defined?(Numo::DFloat)
         training_examples = Numo::DFloat.cast(training_examples)
         # Convert these to an Array for Marshal.dump
-        @mean = training_examples.mean(1).to_a
-        @std = training_examples.stddev(1).to_a
+        @mean = training_examples.mean(0).to_a
+        @std = training_examples.stddev(0).to_a
       elsif defined?(NMatrix)
         training_examples = NMatrix.to_na(training_examples)
         # Convert these to an Array for Marshal.dump
