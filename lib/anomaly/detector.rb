@@ -131,7 +131,7 @@ module Anomaly
     end
 
     def alt_std(x, mean)
-      Math.sqrt(x.sum { |i| (i - mean)**2 } / (x.size - 1))
+      Math.sqrt(x.sum { |i| (i - mean)**2 }.to_f / (x.size - 1))
     end
   end
 end
