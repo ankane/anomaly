@@ -12,6 +12,8 @@ task :benchmark do
     x.report { Anomaly::Detector.new(examples, :eps => 0.5) }
     require "narray"
     x.report { Anomaly::Detector.new(examples, :eps => 0.5) }
+    require "numo/narray"
+    x.report { Anomaly::Detector.new(examples, :eps => 0.5) }
   end
 end
 

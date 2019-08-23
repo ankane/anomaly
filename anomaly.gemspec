@@ -19,4 +19,5 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "rake"
   spec.add_development_dependency "rspec", ">= 2"
   spec.add_development_dependency "narray"
+  spec.add_development_dependency "numo-narray"
 end
