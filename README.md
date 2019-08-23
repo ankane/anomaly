@@ -12,14 +12,6 @@ Add this line to your application’s Gemfile:
 gem "anomaly"
 ```
 
-For max performance (trains ~3x faster for large datasets), also install the NArray gem:
-
-```ruby
-gem "narray"
-```
-
-Anomaly will automatically detect it and use it.
-
 ## How to Use
 
 Say we have weather data and we want to predict if it's sunny. In this example, sunny days are non-anomalies, and days with other types of weather (rain, snow, etc.) are anomalies. The data looks like:
