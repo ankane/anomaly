@@ -2,6 +2,8 @@
 
 Easy-to-use anomaly detection
 
+[![Build Status](https://travis-ci.org/ankane/anomaly.svg?branch=master)](https://travis-ci.org/ankane/anomaly)
+
 ## Installation
 
 Add this line to your application’s Gemfile:
