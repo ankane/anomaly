@@ -83,4 +83,3 @@ Everyone is encouraged to help improve this project. Here are a few ways you can
 - Fix bugs and [submit pull requests](https://github.com/ankane/anomaly/pulls)
 - Write, clarify, or fix documentation
 - Suggest or add new features
-
