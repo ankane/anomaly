@@ -33,17 +33,6 @@ describe Anomaly::Detector do
     end
   end
 
-  context "when examples is an array" do
-    let(:examples) { [[-1, -2, 0], [0, 0, 0], [1, 2, 0]] }
-    let(:sample) { [rand, rand] }
-
-    it "returns the same probability as an NMatrix" do
-      prob = ad.probability(sample)
-      Object.send(:remove_const, :NMatrix)
-      expect(prob).to eq(Anomaly::Detector.new(examples).probability(sample))
-    end
-  end
-
   context "when lots of samples" do
     let(:examples) { m.times.map { [0, 0] } }
     let(:m) { rand(100) + 1 }
