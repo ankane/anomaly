@@ -127,7 +127,7 @@ module Anomaly
     # Not used for NArray
 
     def alt_mean(x)
-      x.inject(0.0) { |a, i| a + i } / x.size
+      x.sum / x.size
     end
 
     def alt_std(x, mean)
