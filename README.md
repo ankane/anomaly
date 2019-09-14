@@ -12,7 +12,7 @@ Add this line to your application’s Gemfile:
 gem "anomaly"
 ```
 
-## How to Use
+## Getting Started
 
 Say we have weather data and we want to predict if it’s sunny. In this example, sunny days are non-anomalies, and days with other types of weather (rain, snow, etc.) are anomalies. The data looks like:
 
@@ -50,7 +50,7 @@ If you already know you want ε = 0.01, initialize the detector with:
 detector = Anomaly::Detector.new(weather_data, eps: 0.01)
 ```
 
-### Persistence
+## Persistence
 
 You can easily persist the detector to a file or database - it’s very tiny.
 
@@ -59,7 +59,7 @@ dump = Marshal.dump(detector)
 File.binwrite("detector.dump", dump)
 ```
 
-Then read it later
+Then read it later:
 
 ```ruby
 dump = File.binread("detector.dump")
