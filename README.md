@@ -36,7 +36,6 @@ detector = Anomaly::Detector.new(weather_data)
 
 # 85°F, 42% humidity, 12.3 in. pressure
 detector.anomaly?([85, 42, 12.3])
-# => true
 ```
 
 Anomaly automatically finds the best value for ε, which you can access with:
