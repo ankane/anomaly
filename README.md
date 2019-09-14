@@ -14,7 +14,7 @@ gem "anomaly"
 
 ## How to Use
 
-Say we have weather data and we want to predict if it's sunny. In this example, sunny days are non-anomalies, and days with other types of weather (rain, snow, etc.) are anomalies. The data looks like:
+Say we have weather data and we want to predict if it’s sunny. In this example, sunny days are non-anomalies, and days with other types of weather (rain, snow, etc.) are anomalies. The data looks like:
 
 ```ruby
 # [temperature(°F), humidity(%), pressure(in), sunny?(y=0, n=1)]
@@ -32,39 +32,39 @@ The last column **must** be 0 for non-anomalies, 1 for anomalies. Non-anomalies 
 To train the detector and test for anomalies, run:
 
 ```ruby
-ad = Anomaly::Detector.new(weather_data)
+detector = Anomaly::Detector.new(weather_data)
 
 # 85°F, 42% humidity, 12.3 in. pressure
-ad.anomaly?([85, 42, 12.3])
+detector.anomaly?([85, 42, 12.3])
 # => true
 ```
 
 Anomaly automatically finds the best value for ε, which you can access with:
 
 ```ruby
-ad.eps
+detector.eps
 ```
 
 If you already know you want ε = 0.01, initialize the detector with:
 
 ```ruby
-ad = Anomaly::Detector.new(weather_data, {:eps => 0.01})
+detector = Anomaly::Detector.new(weather_data, eps: 0.01)
 ```
 
 ### Persistence
 
-You can easily persist the detector to a file or database - it's very tiny.
+You can easily persist the detector to a file or database - it’s very tiny.
 
 ```ruby
-serialized_ad = Marshal.dump(ad)
+dump = Marshal.dump(detector)
+File.binwrite("detector.dump", dump)
+```
 
-# Save to a file
-File.open("anomaly_detector.dump", "w") {|f| f.write(serialized_ad) }
+Then read it later
 
-# ...
-
-# Read it later
-ad2 = Marshal.load(File.open("anomaly_detector.dump", "r").read)
+```ruby
+dump = File.binread("detector.dump")
+detector = Marshal.load(dump)
 ```
 
 ## Credits
