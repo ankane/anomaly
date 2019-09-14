@@ -3,12 +3,16 @@ module Anomaly
     attr_reader :mean, :std
     attr_accessor :eps
 
-    def initialize(examples = nil, opts = {})
+    def initialize(examples = nil, **opts)
       @m = 0
-      train(examples, opts) if examples
+      train(examples, **opts) if examples
     end
 
-    def train(examples, opts = {})
+    def train(examples, eps: 0)
+      # for Numo::NArray
+      # TODO make more efficient when possible
+      examples = examples.to_a
+
       raise "No examples" if examples.empty?
       raise "Must have at least two columns" if examples.first.size < 2
 
@@ -25,7 +29,7 @@ module Anomaly
 
       raise "Must have at least one non-anomaly" if non_anomalies.empty?
 
-      @eps = (opts[:eps] || 0).to_f
+      @eps = eps
       if @eps > 0
         # Use all non-anomalies to train.
         training_examples = non_anomalies

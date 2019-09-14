@@ -2,6 +2,7 @@
 
 - Switched to Ruby `sum` for performance
 - Added support for Numo::NArray
+- Use keyword arguments
 
 # 0.1.0
 
