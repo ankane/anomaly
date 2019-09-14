@@ -105,7 +105,7 @@ module Anomaly
       fn = 0
       examples.each do |example|
         act = example.last != 0
-        pred = self.anomaly?(example[0..-2], eps)
+        pred = anomaly?(example[0..-2], eps)
         if act && pred
           tp += 1
         elsif pred # and !act
