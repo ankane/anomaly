@@ -1,4 +1,4 @@
-# 0.1.1 [unreleased]
+# 0.2.0
 
 - Switched to Ruby `sum` for performance
 - Added support for Numo::NArray
