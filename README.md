@@ -68,7 +68,7 @@ detector = Marshal.load(dump)
 
 ## Credits
 
-A special thanks to [Andrew Ng](http://www.ml-class.org).
+A special thanks to [Andrew Ng](https://www.coursera.org/learn/machine-learning).
 
 ## History
 
