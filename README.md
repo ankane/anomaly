@@ -59,15 +59,15 @@ detector = Anomaly::Detector.new(weather_data, eps: 0.01)
 You can easily persist the detector to a file or database - it’s very tiny.
 
 ```ruby
-dump = Marshal.dump(detector)
-File.binwrite("detector.dump", dump)
+bin = Marshal.dump(detector)
+File.binwrite("detector.bin", bin)
 ```
 
 Then read it later:
 
 ```ruby
-dump = File.binread("detector.dump")
-detector = Marshal.load(dump)
+bin = File.binread("detector.bin")
+detector = Marshal.load(bin)
 ```
 
 ## Credits
