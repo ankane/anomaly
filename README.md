@@ -29,11 +29,15 @@ weather_data = [
 
 The last column **must** be 0 for non-anomalies, 1 for anomalies. Non-anomalies are used to train the detector, and both anomalies and non-anomalies are used to find the best value of ε.
 
-To train the detector and test for anomalies, run:
+Train the detector
 
 ```ruby
 detector = Anomaly::Detector.new(weather_data)
+```
 
+Test for anomalies
+
+```ruby
 # 85°F, 42% humidity, 12.3 in. pressure
 detector.anomaly?([85, 42, 12.3])
 ```
