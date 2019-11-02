@@ -4,9 +4,21 @@ describe Anomaly::Detector do
   let(:examples) { [[-1, -2, 0], [0, 0, 0], [1, 2, 0]] }
   let(:ad) { Anomaly::Detector.new(examples) }
 
+  it "computes anomaly" do
+    expect(ad.anomaly?([0, 0])).to eq(true)
+  end
+
+  it "computes multiple anomalies" do
+    expect(ad.anomaly?([[0, 0], [0, 0]])).to eq([true, true])
+  end
+
   # mean = [0, 0], std = [1, 2]
   it "computes the right probability" do
     expect(ad.probability([0, 0])).to eq(0.079577471545947667)
+  end
+
+  it "computes multiple probabilities" do
+    expect(ad.probability([[0, 0], [0, 0]])).to eq([0.079577471545947667, 0.079577471545947667])
   end
 
   it "computes the right mean" do

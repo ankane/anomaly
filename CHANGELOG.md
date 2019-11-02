@@ -1,3 +1,7 @@
+# 0.2.1 [unreleased]
+
+- Added support for multiple predictions
+
 # 0.2.0
 
 - Switched to Ruby `sum` for performance

@@ -77,18 +77,33 @@ module Anomaly
     # Use log to prevent underflow
     def probability(x)
       raise "Train me first" unless trained?
-      raise ArgumentError, "First argument must have #{@n} elements" if x.size != @n
 
-      prob = 0
-      @n.times.map do |i|
-        pi = normal_pdf(x[i], @mean[i], @std[i])
-        prob += Math.log(pi > 1 ? 1 : pi)
-      end
-      Math.exp(prob)
+      singular = !x.first.is_a?(Array)
+      x = [x] if singular
+
+      y =
+        x.map do |xi|
+          prob = 0
+          @n.times.map do |i|
+            pi = normal_pdf(xi[i], @mean[i], @std[i])
+            prob += Math.log(pi > 1 ? 1 : pi)
+          end
+          Math.exp(prob)
+        end
+
+      singular ? y.first : y
     end
 
     def anomaly?(x, eps = @eps)
-      probability(x) < eps
+      y = probability(x)
+
+      if y.is_a?(Array)
+        y.map do |yi|
+          yi < eps
+        end
+      else
+        y < eps
+      end
     end
 
     protected
