@@ -58,7 +58,7 @@ module Anomaly
         @mean = cols.map { |c| alt_mean(c) }
         @std = cols.each_with_index.map { |c, i| alt_std(c, @mean[i]) }
       end
-      @std.map! { |std| (std == 0 || std.nan?) ? Float::MIN : std }
+      @std.map! { |std| (std == 0 || std.nan?) ? 1e-10 : std }
 
       if @eps == 0
         # Find the best eps.
@@ -74,13 +74,17 @@ module Anomaly
 
     # Limit the probability of features to [0,1]
     # to keep probabilities at same scale.
+    # Use log to prevent underflow
     def probability(x)
       raise "Train me first" unless trained?
       raise ArgumentError, "First argument must have #{@n} elements" if x.size != @n
+
+      prob = 0
       @n.times.map do |i|
-        p = normal_pdf(x[i], @mean[i], @std[i])
-        (p.nan? || p > 1) ? 1 : p
-      end.reduce(1, :*)
+        pi = normal_pdf(x[i], @mean[i], @std[i])
+        prob += Math.log(pi > 1 ? 1 : pi)
+      end
+      Math.exp(prob)
     end
 
     def anomaly?(x, eps = @eps)
