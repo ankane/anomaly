@@ -1,4 +1,4 @@
-# 0.2.1 (unreleased)
+# 0.2.1 (2020-04-16)
 
 - Added support for multiple predictions
 
