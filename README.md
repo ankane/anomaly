@@ -2,7 +2,7 @@
 
 Easy-to-use anomaly detection
 
-[![Build Status](https://travis-ci.org/ankane/anomaly.svg?branch=master)](https://travis-ci.org/ankane/anomaly)
+[![Build Status](https://github.com/ankane/anomaly/workflows/build/badge.svg?branch=master)](https://github.com/ankane/anomaly/actions)
 
 ## Installation
 
