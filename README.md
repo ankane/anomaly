@@ -9,7 +9,7 @@ Easy-to-use anomaly detection
 Add this line to your application’s Gemfile:
 
 ```ruby
-gem "anomaly"
+gem 'anomaly'
 ```
 
 ## Getting Started
@@ -69,6 +69,13 @@ Then read it later:
 bin = File.binread("detector.bin")
 detector = Marshal.load(bin)
 ```
+
+## Related Projects
+
+- [IsoTree](https://github.com/ankane/isotree) - Outlier/anomaly detection for Ruby using Isolation Forest
+- [OutlierTree](https://github.com/ankane/outliertree) - Explainable outlier/anomaly detection for Ruby
+- [MIDAS](https://github.com/ankane/midas) - Edge stream anomaly detection for Ruby
+- [Trend](https://github.com/ankane/trend) - Anomaly detection and forecasting for Ruby
 
 ## Credits
 
