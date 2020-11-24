@@ -3,7 +3,7 @@ require_relative "lib/anomaly/version"
 Gem::Specification.new do |spec|
   spec.name          = "anomaly"
   spec.version       = Anomaly::VERSION
-  spec.summary       = "Easy-to-use anomaly detection"
+  spec.summary       = "Easy-to-use anomaly detection for Ruby"
   spec.homepage      = "https://github.com/ankane/anomaly"
   spec.license       = "MIT"
 

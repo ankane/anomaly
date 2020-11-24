@@ -1,6 +1,6 @@
 # Anomaly
 
-Easy-to-use anomaly detection
+Easy-to-use anomaly detection for Ruby
 
 [![Build Status](https://github.com/ankane/anomaly/workflows/build/badge.svg?branch=master)](https://github.com/ankane/anomaly/actions)
 
