@@ -2,12 +2,12 @@
 
 - Added support for multiple predictions
 
-# 0.2.0
+# 0.2.0 (2019-10-27)
 
 - Switched to Ruby `sum` for performance
 - Added support for Numo::NArray
 - Use keyword arguments
 
-# 0.1.0
+# 0.1.0 (2020-12-18)
 
 - Started changelog
