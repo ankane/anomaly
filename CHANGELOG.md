@@ -8,6 +8,6 @@
 - Added support for Numo::NArray
 - Use keyword arguments
 
-# 0.1.0 (2020-12-18)
+# 0.1.0 (2011-12-18)
 
 - Started changelog
