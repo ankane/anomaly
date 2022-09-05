@@ -5,7 +5,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        engine: [ruby, narray, numo-narray]
+        engine: [ruby, numo-narray]
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
