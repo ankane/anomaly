@@ -74,10 +74,10 @@ detector = Marshal.load(bin)
 
 - [AnomalyDetection.rb](https://github.com/ankane/AnomalyDetection.rb) - Time series anomaly detection for Ruby
 - [Prophet.rb](https://github.com/ankane/prophet-ruby) - Time series forecasting (and anomaly detection) for Ruby
-- [IsoTree](https://github.com/ankane/isotree) - Outlier/anomaly detection for Ruby using Isolation Forest
-- [OutlierTree](https://github.com/ankane/outliertree) - Explainable outlier/anomaly detection for Ruby
-- [MIDAS](https://github.com/ankane/midas) - Edge stream anomaly detection for Ruby
-- [Trend](https://github.com/ankane/trend) - Anomaly detection and forecasting for Ruby
+- [IsoTree](https://github.com/ankane/isotree-ruby) - Outlier/anomaly detection for Ruby using Isolation Forest
+- [OutlierTree](https://github.com/ankane/outliertree-ruby) - Explainable outlier/anomaly detection for Ruby
+- [MIDAS](https://github.com/ankane/midas-ruby) - Edge stream anomaly detection for Ruby
+- [Trend](https://github.com/ankane/trend-ruby) - Anomaly detection and forecasting for Ruby
 
 ## Credits
 
