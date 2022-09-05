@@ -1,3 +1,7 @@
+# 0.3.0 (unreleased)
+
+- Dropped support for Ruby < 2.7
+
 # 0.2.1 (2020-04-16)
 
 - Added support for multiple predictions
