@@ -5,13 +5,17 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        engine: [ruby, numo-narray]
+        include:
+        - ruby: 3.1
+          engine: ruby
+        - ruby: 2.7
+          engine: numo-narray
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
     - uses: ruby/setup-ruby@v1
       with:
-        ruby-version: 3.1
+        ruby-version: ${{ matrix.ruby }}
         bundler-cache: true
     - run: bundle exec rake spec
       env:
