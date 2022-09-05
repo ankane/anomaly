@@ -9,7 +9,7 @@ Easy-to-use anomaly detection for Ruby
 Add this line to your application’s Gemfile:
 
 ```ruby
-gem 'anomaly'
+gem "anomaly"
 ```
 
 ## Getting Started
