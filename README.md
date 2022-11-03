@@ -77,6 +77,7 @@ detector = Marshal.load(bin)
 - [IsoTree](https://github.com/ankane/isotree-ruby) - Outlier/anomaly detection for Ruby using Isolation Forest
 - [OutlierTree](https://github.com/ankane/outliertree-ruby) - Explainable outlier/anomaly detection for Ruby
 - [MIDAS](https://github.com/ankane/midas-ruby) - Edge stream anomaly detection for Ruby
+- [Random Cut Forest](https://github.com/ankane/random-cut-forest-ruby) - Random Cut Forest anomaly detection for Ruby
 - [Trend](https://github.com/ankane/trend-ruby) - Anomaly detection and forecasting for Ruby
 
 ## Credits
