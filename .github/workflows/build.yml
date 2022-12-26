@@ -6,17 +6,17 @@ jobs:
       fail-fast: false
       matrix:
         include:
-        - ruby: 3.1
-          engine: ruby
-        - ruby: 2.7
-          engine: numo-narray
+          - ruby: 3.2
+            engine: ruby
+          - ruby: 2.7
+            engine: numo-narray
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v3
-    - uses: ruby/setup-ruby@v1
-      with:
-        ruby-version: ${{ matrix.ruby }}
-        bundler-cache: true
-    - run: bundle exec rake spec
-      env:
-        ENGINE: ${{ matrix.engine }}
+      - uses: actions/checkout@v3
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: ${{ matrix.ruby }}
+          bundler-cache: true
+      - run: bundle exec rake spec
+        env:
+          ENGINE: ${{ matrix.engine }}
