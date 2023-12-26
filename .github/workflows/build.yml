@@ -6,13 +6,13 @@ jobs:
       fail-fast: false
       matrix:
         include:
-          - ruby: 3.2
+          - ruby: 3.3
             engine: ruby
           - ruby: 2.7
             engine: numo-narray
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - uses: ruby/setup-ruby@v1
         with:
           ruby-version: ${{ matrix.ruby }}
