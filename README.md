@@ -2,7 +2,7 @@
 
 Easy-to-use anomaly detection for Ruby
 
-[![Build Status](https://github.com/ankane/anomaly/workflows/build/badge.svg?branch=master)](https://github.com/ankane/anomaly/actions)
+[![Build Status](https://github.com/ankane/anomaly/actions/workflows/build.yml/badge.svg)](https://github.com/ankane/anomaly/actions)
 
 ## Installation
 
