@@ -1,3 +1,7 @@
+## 0.4.0 (unreleased)
+
+- Dropped support for Ruby < 3.1
+
 ## 0.3.0 (2022-09-05)
 
 - Dropped support for `narray` (use `numo-narray` instead)

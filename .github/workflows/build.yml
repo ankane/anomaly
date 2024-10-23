@@ -8,7 +8,7 @@ jobs:
         include:
           - ruby: 3.3
             engine: ruby
-          - ruby: 2.7
+          - ruby: 3.1
             engine: numo-narray
     runs-on: ubuntu-latest
     steps:
