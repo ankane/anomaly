@@ -19,4 +19,16 @@
 
 ## 0.1.0 (2011-12-18)
 
-- Started changelog
+- Automatically find the best value for epsilon
+
+## 0.0.3 (2011-12-11)
+
+- Keep probabilities between 0 and 1
+
+## 0.0.2 (2011-12-11)
+
+- Handle very small standard deviations more gracefully
+
+## 0.0.1 (2011-12-11)
+
+- First release
