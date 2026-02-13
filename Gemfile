@@ -4,4 +4,4 @@ gemspec
 
 gem "rake"
 gem "rspec"
-gem "numo-narray", platform: :mri
+gem "numo-narray-alt", platform: :mri
