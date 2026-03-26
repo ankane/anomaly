@@ -9,7 +9,7 @@ jobs:
           - ruby: "4.0"
             engine: ruby
           - ruby: 3.3
-            engine: numo-narray
+            engine: numo
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v6
