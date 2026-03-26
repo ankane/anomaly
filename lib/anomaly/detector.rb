@@ -47,11 +47,6 @@ module Anomaly
         # Convert these to an Array for Marshal.dump
         @mean = training_examples.mean(0).to_a
         @std = training_examples.stddev(0).to_a
-      elsif defined?(NMatrix)
-        training_examples = NMatrix.to_na(training_examples)
-        # Convert these to an Array for Marshal.dump
-        @mean = training_examples.mean(1).to_a
-        @std = training_examples.stddev(1).to_a
       else
         # Default to Array, since built-in Matrix does not give us a big performance advantage.
         cols = @n.times.map { |i| training_examples.map { |r| r[i] } }

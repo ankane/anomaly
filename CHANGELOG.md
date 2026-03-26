@@ -1,6 +1,7 @@
 ## 0.5.0 (unreleased)
 
 - Added support for JSON serialization
+- Dropped support for `nmatrix`
 - Dropped support for Ruby < 3.3
 
 ## 0.4.0 (2024-10-23)
