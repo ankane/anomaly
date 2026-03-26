@@ -13,7 +13,7 @@ task :benchmark do
 
   Benchmark.bm do |x|
     x.report { Anomaly::Detector.new(examples, eps: 0.5) }
-    require "numo/narray"
+    require "numo/narray/alt"
     x.report { Anomaly::Detector.new(examples, eps: 0.5) }
   end
 end
