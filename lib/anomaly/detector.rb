@@ -106,7 +106,39 @@ module Anomaly
       end
     end
 
+    def to_json
+      require "json"
+
+      obj = {
+        m: @m,
+        n: @n,
+        eps: @eps,
+        mean: @mean,
+        std: @std
+      }
+
+      JSON.generate(obj)
+    end
+
+    def self.load_json(json)
+      require "json"
+
+      obj = JSON.parse(json)
+
+      detector = new
+      detector.send(:json_load, obj)
+      detector
+    end
+
     protected
+
+    def json_load(obj)
+      @m = obj["m"].to_i
+      @n = obj["n"].to_i
+      @eps = obj["eps"].to_f
+      @mean = obj["mean"].map(&:to_f)
+      @std = obj["std"].map(&:to_f)
+    end
 
     SQRT2PI = Math.sqrt(2 * Math::PI)
 

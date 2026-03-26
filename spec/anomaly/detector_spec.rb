@@ -33,6 +33,10 @@ describe Anomaly::Detector do
     expect { Marshal.dump(ad) }.to_not raise_error
   end
 
+  it "serializes" do
+    expect(Anomaly::Detector.load_json(ad.to_json).probability([0, 0])).to eq(0.079577471545947667)
+  end
+
   context "when standard deviation is 0" do
     let(:examples) { [[0, 0], [0, 0]] }
 
