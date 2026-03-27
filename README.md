@@ -104,5 +104,5 @@ To get started with development:
 git clone https://github.com/ankane/anomaly.git
 cd anomaly
 bundle install
-bundle exec rake spec
+bundle exec rake test
 ```

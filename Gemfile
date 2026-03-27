@@ -3,6 +3,6 @@ source "https://rubygems.org"
 gemspec
 
 gem "rake"
-gem "rspec"
-gem "numo-narray-alt", platform: :mri
+gem "minitest"
+gem "numo-narray-alt", platform: :mri, require: false
 gem "benchmark"

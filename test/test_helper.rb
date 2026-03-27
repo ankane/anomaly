@@ -1,7 +1,5 @@
 require "bundler/setup"
-Bundler.require
+Bundler.require(:default)
+require "minitest/autorun"
 
 require "numo/narray/alt" if ENV["ENGINE"] == "numo"
-
-RSpec.configure do
-end
