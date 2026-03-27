@@ -1,6 +1,7 @@
 ## 0.5.0 (unreleased)
 
 - Added support for JSON serialization
+- Removed `eps` option from `train` method (use initializer instead)
 - Dropped support for `nmatrix`
 - Dropped support for Ruby < 3.3
 

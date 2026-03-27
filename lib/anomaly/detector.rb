@@ -3,12 +3,13 @@ module Anomaly
     attr_reader :mean, :std
     attr_accessor :eps
 
-    def initialize(examples = nil, **opts)
+    def initialize(examples = nil, eps: nil)
       @m = 0
-      train(examples, **opts) if examples
+      @eps = eps || 0
+      train(examples) if examples
     end
 
-    def train(examples, eps: 0)
+    def train(examples)
       # for Numo::NArray
       # TODO make more efficient when possible
       examples = examples.to_a
@@ -29,7 +30,6 @@ module Anomaly
 
       raise "Must have at least one non-anomaly" if non_anomalies.empty?
 
-      @eps = eps
       if @eps > 0
         # Use all non-anomalies to train.
         training_examples = non_anomalies
