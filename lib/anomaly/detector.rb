@@ -13,8 +13,8 @@ module Anomaly
       # TODO make more efficient when possible
       examples = examples.to_a
 
-      raise "No examples" if examples.empty?
-      raise "Must have at least two columns" if examples.first.size < 2
+      raise ArgumentError, "No examples" if examples.empty?
+      raise ArgumentError, "Must have at least two columns" if examples.first.size < 2
 
       # Divide into groups since we only want to train with non-anomalies.
       anomalies = []
@@ -27,7 +27,7 @@ module Anomaly
         end
       end
 
-      raise "Must have at least one non-anomaly" if non_anomalies.empty?
+      raise ArgumentError, "Must have at least one non-anomaly" if non_anomalies.empty?
 
       if @eps > 0
         # Use all non-anomalies to train.
@@ -70,7 +70,7 @@ module Anomaly
     # to keep probabilities at same scale.
     # Use log to prevent underflow
     def probability(x)
-      raise "Train me first" unless trained?
+      raise Error, "Train me first" unless trained?
 
       singular = !x.first.is_a?(Array)
       x = [x] if singular

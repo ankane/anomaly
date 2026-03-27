@@ -72,7 +72,7 @@ describe Anomaly::Detector do
     let(:examples) { [[0, 1]] }
 
     it "raises error" do
-      expect { ad }.to raise_error RuntimeError, "Must have at least one non-anomaly"
+      expect { ad }.to raise_error ArgumentError, "Must have at least one non-anomaly"
     end
   end
 
