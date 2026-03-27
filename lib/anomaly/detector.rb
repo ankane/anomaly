@@ -1,7 +1,6 @@
 module Anomaly
   class Detector
-    attr_reader :mean, :std
-    attr_accessor :eps
+    attr_reader :eps, :mean, :std
 
     def initialize(examples = nil, eps: nil)
       @m = 0
