@@ -56,8 +56,6 @@ detector = Anomaly::Detector.new(weather_data, eps: 0.01)
 
 ## Persistence
 
-[unreleased]
-
 You can easily persist the detector to a file or database - it’s very tiny.
 
 ```ruby
